@@ -51,7 +51,7 @@ Principais protocolos:
 | Protocolo | Função |
 |-----------|--------|
 | HTTP | Transferência de páginas web |
-| HTTPS | Comunicação web segura com criptografia |
+| HTTPS | HTTP com criptografia através de TLS |
 | DNS | Conversão de nomes de domínio em endereços IP |
 | DHCP | Distribuição automática de endereços IP |
 | FTP | Transferência de arquivos entre computadores |
@@ -102,7 +102,7 @@ Utilizado em:
 - Navegação web (HTTP/HTTPS)
 - Transferência de arquivos (FTP)
 - E-mails (SMTP, POP3, IMAP)
-- Acesso remoto (SSH, Telnet)
+- Acesso remoto (SSH)
 
 ---
 
@@ -150,8 +150,8 @@ Diferenças entre IPv4 e IPv6:
 | Tamanho do endereço | 32 bits | 128 bits |
 | Quantidade de endereços | 4.3 bilhões | 340 undecilhões |
 | Representação | Decimal com pontos | Hexadecimal com dois-pontos |
-| Segurança | Opcional (IPSec) | Nativa (IPSec) |
-| NAT | Necessário | Desnecessário |
+| Segurança | Suporte a IPSec | Suporte aprimorado a IPSec |
+| NAT | Amplamente utilizado | Geralmente desnecessário |
 
 Principais protocolos:
 
@@ -161,7 +161,7 @@ Principais protocolos:
 | IPv6 | Endereçamento baseado em 128 bits |
 | ICMP | Diagnóstico e mensagens de controle |
 | ARP | Resolução de endereços MAC a partir de IP |
-| RARP | Resolução de IP a partir de MAC |
+| RARP | Resolução de IP a partir de MAC (obsoleto) |
 
 Exemplos:
 
@@ -189,13 +189,46 @@ Principais tecnologias:
 | Ethernet | Padrão de redes cabeadas (10/100/1000 Mbps) |
 | Wi-Fi | Redes sem fio (802.11a/b/g/n/ac/ax) |
 | PPP | Protocolo ponto a ponto |
-| Frame Relay | Tecnologia de WAN |
+| Frame Relay | Tecnologia WAN legada |
 
 Endereço MAC:
 
 - Endereço físico único de 48 bits
 - Formato: XX:XX:XX:XX:XX:XX
 - Utilizado para comunicação na rede local
+
+---
+
+## 🔑 Portas e Sockets
+
+Portas são identificadores numéricos utilizados para direcionar a comunicação para serviços específicos dentro de um dispositivo.
+
+Enquanto o endereço IP identifica o dispositivo na rede, a porta identifica a aplicação ou serviço.
+
+Exemplo:
+
+192.168.1.10:443
+
+IP → dispositivo
+443 → serviço HTTPS
+
+Cada aplicação utiliza um número de porta para se comunicar.
+
+| Porta | Protocolo | Serviço |
+|-------|-----------|---------|
+| 20 | TCP | FTP (dados) |
+| 21 | TCP | FTP (controle) |
+| 22 | TCP | SSH |
+| 23 | TCP | Telnet (acesso remoto não seguro) |
+| 25 | TCP | SMTP |
+| 53 | TCP/UDP | DNS |
+| 80 | TCP | HTTP |
+| 110 | TCP | POP3 |
+| 143 | TCP | IMAP |
+| 443 | TCP | HTTPS |
+| 3389 | TCP | RDP |
+
+Socket = Endereço IP + Porta
 
 ---
 
@@ -211,60 +244,7 @@ Processo de encapsulamento:
 4. Quadro (Ethernet) - Adiciona MAC de origem e destino
 5. Bits - Transmissão física
 
-Representação:
-
-```
-+------------------+
-| Dados da Aplicação |
-+------------------+
-         ↓
-+------------------+
-| Cabeçalho TCP/UDP |
-|    Dados          |
-+------------------+
-         ↓
-+------------------+
-| Cabeçalho IP      |
-| Cabeçalho TCP/UDP |
-|    Dados          |
-+------------------+
-         ↓
-+------------------+
-| Cabeçalho Ethernet|
-| Cabeçalho IP      |
-| Cabeçalho TCP/UDP |
-|    Dados          |
-| Trailer Ethernet  |
-+------------------+
-         ↓
-+------------------+
-| Bits              |
-+------------------+
-```
-
 No destino, ocorre o processo inverso chamado **desencapsulamento**, onde os dados são reorganizados para a aplicação receptora.
-
----
-
-## 🔑 Portas e Sockets
-
-Cada aplicação utiliza um número de porta para se comunicar.
-
-| Porta | Protocolo | Serviço |
-|-------|-----------|---------|
-| 20 | TCP | FTP (dados) |
-| 21 | TCP | FTP (controle) |
-| 22 | TCP | SSH |
-| 23 | TCP | Telnet |
-| 25 | TCP | SMTP |
-| 53 | TCP/UDP | DNS |
-| 80 | TCP | HTTP |
-| 110 | TCP | POP3 |
-| 143 | TCP | IMAP |
-| 443 | TCP | HTTPS |
-| 3389 | TCP | RDP |
-
-Socket = Endereço IP + Porta
 
 ---
 
