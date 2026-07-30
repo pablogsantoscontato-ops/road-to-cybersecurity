@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌐 Guia Completo de CIDR e Subnetting
+# 🌐 Guia de CIDR, Subnetting e Máscaras de Sub-rede
 
 ### CIDR, máscaras de sub-rede e subnetting
 
@@ -10,7 +10,7 @@
 
 </div>
 
-Este repositório contém informações sobre CIDR, máscaras de sub-rede e subnetting.
+Este documento apresenta os fundamentos de **CIDR, máscaras de sub-rede e subnetting**, explicando como redes IPv4 podem ser divididas em sub-redes menores para melhorar organização, aproveitamento de endereços IP e segmentação de redes.
 
 ---
 
@@ -25,6 +25,29 @@ Exemplo:
 O número após a barra (`/`) indica quantos bits pertencem à rede.
 
 > Quanto maior o número após a barra, menor será a quantidade de dispositivos que cabem na rede.
+
+---
+
+## 🔀 O que é Subnetting?
+
+Subnetting é o processo de dividir uma rede IP maior em redes menores chamadas sub-redes.
+
+Exemplo:
+
+Uma rede:
+
+192.168.1.0/24
+
+Pode ser dividida em:
+
+192.168.1.0/25
+192.168.1.128/25
+
+Cada nova sub-rede possui seus próprios:
+
+* Endereço de rede
+* Hosts disponíveis
+* Endereço de broadcast
 
 ---
 
@@ -51,8 +74,8 @@ O mesmo acontece com as redes:
 
 ## 📚 Tabela de CIDR e Máscaras
 
-| CIDR | Máscara | Sub-redes | Hosts Disponíveis |
-|------|---------|----------:|------------------:|
+| CIDR | Máscara | Sub-redes criadas a partir de /24 | Hosts por sub-rede |
+|------|---------|----------------------------------:|-------------------:|
 | /24 | 255.255.255.0 | 1 | 254 |
 | /25 | 255.255.255.128 | 2 | 126 |
 | /26 | 255.255.255.192 | 4 | 62 |
@@ -147,8 +170,8 @@ Características:
 
 ## 📋 Resumo de CIDR
 
-| CIDR | Hosts | Sub-redes |
-|------|------:|----------:|
+| CIDR | Hosts | Sub-redes a partir de /24 |
+|------|------:|---------------------------:|
 | /24 | 254 | 1 |
 | /25 | 126 | 2 |
 | /26 | 62 | 4 |
