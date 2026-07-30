@@ -2,15 +2,15 @@
 
 # 🌐 Guia Completo de CIDR e Subnetting
 
-### Um guia simples e prático para entender CIDR, máscaras de sub-rede e subnetting.
+### CIDR, máscaras de sub-rede e subnetting
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=500&color=00FFAA&center=true&vCenter=true&width=435&lines=Subnetting+na+pr%C3%A1tica;Dividindo+redes+como+pizza;Entendendo+CIDR;Aprendendo+Redes)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=500&color=00FFAA&center=true&vCenter=true&width=435&lines=Subnetting;Dividindo+redes;Entendendo+CIDR;Redes)](https://git.io/typing-svg)
 
 ---
 
 </div>
 
-Este repositório foi criado para ajudar estudantes de Redes, Infraestrutura e Cibersegurança a compreender um dos assuntos mais importantes da área: **Subnetting**.
+Este repositório contém informações sobre CIDR, máscaras de sub-rede e subnetting.
 
 ---
 
@@ -24,26 +24,24 @@ Exemplo:
 
 O número após a barra (`/`) indica quantos bits pertencem à rede.
 
-Mas, para simplificar:
-
 > Quanto maior o número após a barra, menor será a quantidade de dispositivos que cabem na rede.
 
 ---
 
 ## 🍕 A Analogia da Pizza
 
-Imagine que uma rede `/24` é uma pizza inteira.
+Uma rede `/24` pode ser comparada a uma pizza inteira.
 
 /24 -> Pizza inteira
 
-Agora vamos dividir essa pizza:
+Divisões possíveis:
 
 /25 -> 2 pedaços
 /26 -> 4 pedaços
 /27 -> 8 pedaços
 /28 -> 16 pedaços
 
-Quanto mais você divide a pizza, menos pessoas conseguem comer em cada pedaço.
+Quanto mais divisões, menor o tamanho de cada parte.
 
 O mesmo acontece com as redes:
 
@@ -51,7 +49,7 @@ O mesmo acontece com as redes:
 
 ---
 
-## 📚 Tabela para Decorar
+## 📚 Tabela de CIDR e Máscaras
 
 | CIDR | Máscara | Hosts Disponíveis |
 |------|---------|------------------:|
@@ -62,8 +60,6 @@ O mesmo acontece com as redes:
 | /28 | 255.255.255.240 | 14 |
 | /29 | 255.255.255.248 | 6 |
 | /30 | 255.255.255.252 | 2 |
-
-> Dica: essa tabela aparece em cursos da Cisco, entrevistas e certificações.
 
 ---
 
@@ -77,7 +73,7 @@ Rede: 192.168.1.0
 Hosts: 192.168.1.1 - 192.168.1.254
 Broadcast: 192.168.1.255
 
-Essa rede suporta:
+Essa rede possui:
 
 * 254 dispositivos.
 
@@ -87,7 +83,7 @@ Essa rede suporta:
 
 192.168.1.0/25
 
-Agora dividimos a rede em duas partes.
+Divisão em duas partes:
 
 ### Primeira sub-rede
 
@@ -111,7 +107,7 @@ Cada rede possui:
 
 192.168.1.0/26
 
-Sub-redes criadas:
+Sub-redes resultantes:
 
 192.168.1.0
 192.168.1.64
@@ -124,9 +120,9 @@ Cada uma suporta:
 
 ---
 
-## 🏢 Exemplo do Mundo Real
+## 🏢 Exemplo de Aplicação
 
-Imagine uma empresa com:
+Cenário com departamentos:
 
 | Departamento | Quantidade de Dispositivos |
 |--------------|---------------------------:|
@@ -134,22 +130,22 @@ Imagine uma empresa com:
 | RH | 20 |
 | Financeiro | 15 |
 
-Uma possível solução seria:
+Alocação sugerida:
 
 TI -> /26
 RH -> /27
 Financeiro -> /27
 
-Benefícios:
+Características:
 
-* Melhor organização.
-* Menos desperdício de IPs.
-* Mais segurança.
-* Fácil gerenciamento.
+* Organização
+* Otimização de IPs
+* Segmentação
+* Gerenciamento
 
 ---
 
-## 🎯 O que preciso decorar?
+## 📋 Resumo de CIDR
 
 * /24 = 254 hosts
 * /25 = 126 hosts
@@ -159,19 +155,19 @@ Benefícios:
 * /29 = 6 hosts
 * /30 = 2 hosts
 
-Além disso:
+Observações:
 
 1. Quanto maior o CIDR, menor a rede.
-2. Subnetting = dividir uma rede em redes menores.
-3. Todo subnetting possui:
+2. Subnetting = divisão de uma rede em redes menores.
+3. Cada subnetting possui:
 
-   * Endereço de Rede;
-   * Hosts válidos;
-   * Broadcast.
+   * Endereço de Rede
+   * Hosts válidos
+   * Broadcast
 
 ---
 
-## 🚀 Próximos Assuntos
+## 🚀 Tópicos Relacionados
 
 * [ ] IPv6
 * [ ] TCP/IP
@@ -193,10 +189,8 @@ Além disso:
 
 **Pablo Gonçalves Santos**
 
-* Estudante de Sistemas da Informação
-* Entusiasta de Redes e Cibersegurança
-
-> "Aprender Redes é aprender como a Internet realmente funciona."
+* Sistemas da Informação
+* Redes e Cibersegurança
 
 ---
 
@@ -206,6 +200,6 @@ Além disso:
 
 ---
 
-<sub>Desenvolvido com ❤️ para o aprendizado de redes</sub>
+<sub>Documentação sobre CIDR e Subnetting</sub>
 
 </div>
