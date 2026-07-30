@@ -32,14 +32,14 @@ O número após a barra (`/`) indica quantos bits pertencem à rede.
 
 Uma rede `/24` pode ser comparada a uma pizza inteira.
 
-/24 -> Pizza inteira
+/24 -> Pizza inteira (1 rede)
 
 Divisões possíveis:
 
-/25 -> 2 pedaços
-/26 -> 4 pedaços
-/27 -> 8 pedaços
-/28 -> 16 pedaços
+/25 -> 2 pedaços (2 sub-redes)
+/26 -> 4 pedaços (4 sub-redes)
+/27 -> 8 pedaços (8 sub-redes)
+/28 -> 16 pedaços (16 sub-redes)
 
 Quanto mais divisões, menor o tamanho de cada parte.
 
@@ -51,15 +51,15 @@ O mesmo acontece com as redes:
 
 ## 📚 Tabela de CIDR e Máscaras
 
-| CIDR | Máscara | Hosts Disponíveis |
-|------|---------|------------------:|
-| /24 | 255.255.255.0 | 254 |
-| /25 | 255.255.255.128 | 126 |
-| /26 | 255.255.255.192 | 62 |
-| /27 | 255.255.255.224 | 30 |
-| /28 | 255.255.255.240 | 14 |
-| /29 | 255.255.255.248 | 6 |
-| /30 | 255.255.255.252 | 2 |
+| CIDR | Máscara | Sub-redes | Hosts Disponíveis |
+|------|---------|----------:|------------------:|
+| /24 | 255.255.255.0 | 1 | 254 |
+| /25 | 255.255.255.128 | 2 | 126 |
+| /26 | 255.255.255.192 | 4 | 62 |
+| /27 | 255.255.255.224 | 8 | 30 |
+| /28 | 255.255.255.240 | 16 | 14 |
+| /29 | 255.255.255.248 | 32 | 6 |
+| /30 | 255.255.255.252 | 64 | 2 |
 
 ---
 
@@ -83,7 +83,7 @@ Essa rede possui:
 
 192.168.1.0/25
 
-Divisão em duas partes:
+Divisão em 2 sub-redes:
 
 ### Primeira sub-rede
 
@@ -107,7 +107,7 @@ Cada rede possui:
 
 192.168.1.0/26
 
-Sub-redes resultantes:
+Divisão em 4 sub-redes:
 
 192.168.1.0
 192.168.1.64
@@ -132,9 +132,9 @@ Cenário com departamentos:
 
 Alocação sugerida:
 
-TI -> /26
-RH -> /27
-Financeiro -> /27
+TI -> /26 (62 hosts)
+RH -> /27 (30 hosts)
+Financeiro -> /27 (30 hosts)
 
 Características:
 
@@ -147,13 +147,15 @@ Características:
 
 ## 📋 Resumo de CIDR
 
-* /24 = 254 hosts
-* /25 = 126 hosts
-* /26 = 62 hosts
-* /27 = 30 hosts
-* /28 = 14 hosts
-* /29 = 6 hosts
-* /30 = 2 hosts
+| CIDR | Hosts | Sub-redes |
+|------|------:|----------:|
+| /24 | 254 | 1 |
+| /25 | 126 | 2 |
+| /26 | 62 | 4 |
+| /27 | 30 | 8 |
+| /28 | 14 | 16 |
+| /29 | 6 | 32 |
+| /30 | 2 | 64 |
 
 Observações:
 
