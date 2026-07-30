@@ -33,12 +33,12 @@ O modelo TCP/IP é a base das redes modernas e da comunicação na Internet.
 
 O modelo TCP/IP é dividido em 4 camadas:
 
-| Camada | Função |
-|--------|--------|
-| Aplicação | Fornece serviços de rede para aplicações |
-| Transporte | Controla a comunicação entre dispositivos |
-| Internet | Realiza endereçamento e roteamento |
-| Acesso à Rede | Responsável pela transmissão física dos dados |
+| Camada | Função | Exemplos de Protocolos |
+|--------|--------|----------------------|
+| Aplicação | Fornece serviços de rede para aplicações | HTTP, HTTPS, DNS, DHCP, FTP, SMTP, SSH |
+| Transporte | Controla a comunicação entre dispositivos | TCP, UDP |
+| Internet | Realiza endereçamento e roteamento | IPv4, IPv6, ICMP |
+| Acesso à Rede | Responsável pela transmissão física dos dados | Ethernet, Wi-Fi |
 
 ---
 
@@ -51,17 +51,20 @@ Principais protocolos:
 | Protocolo | Função |
 |-----------|--------|
 | HTTP | Transferência de páginas web |
-| HTTPS | Comunicação web segura |
-| DNS | Conversão de nomes em endereços IP |
+| HTTPS | Comunicação web segura com criptografia |
+| DNS | Conversão de nomes de domínio em endereços IP |
 | DHCP | Distribuição automática de endereços IP |
-| FTP | Transferência de arquivos |
-| SMTP | Envio de e-mails |
-| SSH | Acesso remoto seguro |
+| FTP | Transferência de arquivos entre computadores |
+| SMTP | Envio de e-mails entre servidores |
+| SSH | Acesso remoto seguro a dispositivos |
+| Telnet | Acesso remoto não criptografado (obsoleto) |
+| SNMP | Monitoramento e gerenciamento de redes |
 
 Exemplos:
 
 - Ao acessar um site utilizando HTTPS, a camada de aplicação utiliza o protocolo HTTPS para realizar a comunicação com o servidor.
 - Ao enviar um e-mail, o protocolo SMTP é utilizado para a transferência da mensagem entre os servidores.
+- Ao digitar um nome de domínio no navegador, o DNS é acionado para traduzir o nome para um endereço IP.
 
 ---
 
@@ -78,39 +81,50 @@ Principais protocolos:
 
 ---
 
-### TCP
+### TCP (*Transmission Control Protocol*)
 
-O TCP (*Transmission Control Protocol*) garante maior confiabilidade na transmissão.
+O TCP garante maior confiabilidade na transmissão.
 
 Características:
 
-- Confirma recebimento dos dados
+- Confirma recebimento dos dados (ACK)
 - Organiza a sequência dos pacotes
 - Realiza retransmissões quando necessário
+- Estabelece conexão através do Three-Way Handshake
+- Controle de fluxo e congestionamento
+
+Funcionamento do Three-Way Handshake:
+
+SYN (Cliente) → SYN-ACK (Servidor) → ACK (Cliente)
 
 Utilizado em:
 
-- Navegação web
-- Transferência de arquivos
-- E-mails
+- Navegação web (HTTP/HTTPS)
+- Transferência de arquivos (FTP)
+- E-mails (SMTP, POP3, IMAP)
+- Acesso remoto (SSH, Telnet)
 
 ---
 
-### UDP
+### UDP (*User Datagram Protocol*)
 
-O UDP (*User Datagram Protocol*) prioriza velocidade e menor latência.
+O UDP prioriza velocidade e menor latência.
 
 Características:
 
 - Não realiza confirmação de entrega
 - Possui menor controle sobre os dados
 - Reduz o tempo de comunicação
+- Não estabelece conexão prévia
+- Menor overhead de dados
 
 Utilizado em:
 
 - Jogos online
-- Streaming
+- Streaming de vídeo e áudio
 - Chamadas de vídeo
+- DNS (consultas rápidas)
+- VoIP (Voice over IP)
 
 ---
 
@@ -120,13 +134,24 @@ Responsável pelo endereçamento lógico e encaminhamento dos pacotes.
 
 Principal protocolo:
 
-### IP (Internet Protocol)
+### IP (*Internet Protocol*)
 
 O protocolo IP identifica dispositivos através de endereços IP e permite que os pacotes sejam encaminhados entre redes.
 
-Exemplo:
+Endereços:
 
-192.168.1.10
+- IPv4: 192.168.1.10 (32 bits)
+- IPv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334 (128 bits)
+
+Diferenças entre IPv4 e IPv6:
+
+| Característica | IPv4 | IPv6 |
+|----------------|------|------|
+| Tamanho do endereço | 32 bits | 128 bits |
+| Quantidade de endereços | 4.3 bilhões | 340 undecilhões |
+| Representação | Decimal com pontos | Hexadecimal com dois-pontos |
+| Segurança | Opcional (IPSec) | Nativa (IPSec) |
+| NAT | Necessário | Desnecessário |
 
 Principais protocolos:
 
@@ -135,11 +160,14 @@ Principais protocolos:
 | IPv4 | Endereçamento baseado em 32 bits |
 | IPv6 | Endereçamento baseado em 128 bits |
 | ICMP | Diagnóstico e mensagens de controle |
+| ARP | Resolução de endereços MAC a partir de IP |
+| RARP | Resolução de IP a partir de MAC |
 
 Exemplos:
 
 - O comando `ping` utiliza ICMP para verificar a comunicação entre dispositivos.
 - O roteamento de pacotes entre redes utiliza o protocolo IP para definir o caminho até o destino.
+- O ARP descobre o endereço MAC correspondente a um endereço IP na rede local.
 
 ---
 
@@ -149,15 +177,25 @@ Responsável pela comunicação entre o dispositivo e o meio físico.
 
 Inclui:
 
-- Placas de rede
-- Cabos
+- Placas de rede (NIC)
+- Cabos (Ethernet, Fibra Óptica)
 - Wi-Fi
 - Endereços MAC
 
 Principais tecnologias:
 
-- Ethernet
-- Wi-Fi
+| Tecnologia | Descrição |
+|------------|-----------|
+| Ethernet | Padrão de redes cabeadas (10/100/1000 Mbps) |
+| Wi-Fi | Redes sem fio (802.11a/b/g/n/ac/ax) |
+| PPP | Protocolo ponto a ponto |
+| Frame Relay | Tecnologia de WAN |
+
+Endereço MAC:
+
+- Endereço físico único de 48 bits
+- Formato: XX:XX:XX:XX:XX:XX
+- Utilizado para comunicação na rede local
 
 ---
 
@@ -165,30 +203,82 @@ Principais tecnologias:
 
 Durante a transmissão, os dados passam pelas camadas do modelo TCP/IP e recebem informações adicionais.
 
-Processo:
+Processo de encapsulamento:
 
-Dados
-↓
-Segmento (TCP/UDP)
-↓
-Pacote (IP)
-↓
-Quadro (Ethernet)
-↓
-Bits
+1. Dados da aplicação
+2. Segmento (TCP/UDP) - Adiciona porta de origem e destino
+3. Pacote (IP) - Adiciona IP de origem e destino
+4. Quadro (Ethernet) - Adiciona MAC de origem e destino
+5. Bits - Transmissão física
 
-No destino, ocorre o processo inverso chamado **desencapsulamento**.
+Representação:
+
+```
++------------------+
+| Dados da Aplicação |
++------------------+
+         ↓
++------------------+
+| Cabeçalho TCP/UDP |
+|    Dados          |
++------------------+
+         ↓
++------------------+
+| Cabeçalho IP      |
+| Cabeçalho TCP/UDP |
+|    Dados          |
++------------------+
+         ↓
++------------------+
+| Cabeçalho Ethernet|
+| Cabeçalho IP      |
+| Cabeçalho TCP/UDP |
+|    Dados          |
+| Trailer Ethernet  |
++------------------+
+         ↓
++------------------+
+| Bits              |
++------------------+
+```
+
+No destino, ocorre o processo inverso chamado **desencapsulamento**, onde os dados são reorganizados para a aplicação receptora.
+
+---
+
+## 🔑 Portas e Sockets
+
+Cada aplicação utiliza um número de porta para se comunicar.
+
+| Porta | Protocolo | Serviço |
+|-------|-----------|---------|
+| 20 | TCP | FTP (dados) |
+| 21 | TCP | FTP (controle) |
+| 22 | TCP | SSH |
+| 23 | TCP | Telnet |
+| 25 | TCP | SMTP |
+| 53 | TCP/UDP | DNS |
+| 80 | TCP | HTTP |
+| 110 | TCP | POP3 |
+| 143 | TCP | IMAP |
+| 443 | TCP | HTTPS |
+| 3389 | TCP | RDP |
+
+Socket = Endereço IP + Porta
 
 ---
 
 ## 📋 Resumo
 
 - TCP/IP é o modelo utilizado na Internet
-- Possui 4 camadas principais
+- Possui 4 camadas principais: Aplicação, Transporte, Internet e Acesso à Rede
 - Cada camada possui protocolos específicos
-- TCP fornece confiabilidade
-- UDP fornece velocidade
+- TCP fornece confiabilidade na transmissão
+- UDP fornece velocidade com menor overhead
 - IP realiza o endereçamento e roteamento dos pacotes
+- Portas identificam serviços em um dispositivo
+- Encapsulamento adiciona cabeçalhos a cada camada
+- Desencapsulamento remove os cabeçalhos no destino
 
 ---
 
