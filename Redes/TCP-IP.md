@@ -58,9 +58,10 @@ Principais protocolos:
 | SMTP | Envio de e-mails |
 | SSH | Acesso remoto seguro |
 
-Exemplo:
+Exemplos:
 
-Ao acessar um site utilizando HTTPS, a camada de aplicação utiliza o protocolo HTTPS para realizar a comunicação com o servidor.
+- Ao acessar um site utilizando HTTPS, a camada de aplicação utiliza o protocolo HTTPS para realizar a comunicação com o servidor.
+- Ao enviar um e-mail, o protocolo SMTP é utilizado para a transferência da mensagem entre os servidores.
 
 ---
 
@@ -135,9 +136,10 @@ Principais protocolos:
 | IPv6 | Endereçamento baseado em 128 bits |
 | ICMP | Diagnóstico e mensagens de controle |
 
-Exemplo:
+Exemplos:
 
-O comando `ping` utiliza ICMP para verificar a comunicação entre dispositivos.
+- O comando `ping` utiliza ICMP para verificar a comunicação entre dispositivos.
+- O roteamento de pacotes entre redes utiliza o protocolo IP para definir o caminho até o destino.
 
 ---
 
