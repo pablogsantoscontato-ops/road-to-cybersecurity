@@ -169,24 +169,6 @@ Observações:
 
 ---
 
-## 🚀 Tópicos Relacionados
-
-* [ ] IPv6
-* [ ] TCP/IP
-* [ ] Modelo OSI
-* [ ] VLANs
-* [ ] ACLs
-* [ ] DHCP
-* [ ] DNS
-* [ ] Switching
-* [ ] Roteamento
-* [ ] Linux para Redes
-* [ ] Wireshark
-* [ ] Firewall
-* [ ] Active Directory
-
----
-
 ## 👨‍💻 Autor
 
 **Pablo Gonçalves Santos**
