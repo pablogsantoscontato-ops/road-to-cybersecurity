@@ -196,7 +196,7 @@ Observações:
 
 **Pablo Gonçalves Santos**
 
-* Sistemas da Informação
+* Sistemas de Informação
 * Redes e Cibersegurança
 
 ---
