@@ -10,46 +10,53 @@
 
 </div>
 
-Este documento apresenta conceitos fundamentais de Redes de Computadores, abordando como dispositivos recebem configurações de rede, como se comunicam com outras redes e como acessam a Internet.
+Este documento apresenta conceitos fundamentais de Redes de Computadores, abordando como dispositivos recebem configurações de rede, como se comunicam dentro de uma rede e como acessam outras redes através de roteadores.
 
 ---
 
 ## 🚪 Gateway Padrão (Default Gateway)
 
-O Gateway Padrão é o dispositivo responsável por permitir que um equipamento saia da sua rede local e se comunique com outras redes.
+O Gateway Padrão é o endereço IP da interface do roteador responsável por encaminhar o tráfego da rede local para outras redes.
 
-Normalmente, o gateway é a interface do roteador conectada à rede local.
+Quando um dispositivo precisa acessar um destino que não pertence à sua rede local, ele envia os pacotes para o gateway.
 
 Exemplo:
 
+```text
 Computador:
 IP: 192.168.1.10
 
 Gateway:
 192.168.1.1
+```
 
-Quando o computador deseja acessar um servidor fora da rede local, ele envia o tráfego para o gateway.
+Nesse exemplo, o roteador com endereço `192.168.1.1` funciona como a saída da rede local.
 
 ---
 
 ## 🌐 Roteadores como Gateways
 
-O roteador conecta diferentes redes e encaminha pacotes entre elas.
+O roteador é responsável por conectar diferentes redes e encaminhar pacotes entre elas.
 
-Cada interface do roteador pertence a uma rede diferente e possui um endereço IP próprio.
+Cada interface do roteador pertence a uma rede diferente e possui seu próprio endereço IP.
 
 Exemplo:
 
-Rede Local:
+```text
+Rede Local
 192.168.1.0/24
     |
     |
+    v
 Roteador
+Gateway: 192.168.1.1
     |
     |
-Internet
+    v
+Outra Rede
+```
 
-O roteador funciona como o caminho entre a rede interna e outras redes.
+O roteador permite a comunicação entre redes que possuem endereçamentos diferentes.
 
 ---
 
@@ -60,10 +67,11 @@ O roteador cria uma separação entre:
 - Rede interna (LAN)
 - Rede externa (Internet)
 
-A rede interna utiliza geralmente endereços privados, enquanto a Internet utiliza endereços públicos.
+A rede interna normalmente utiliza endereços privados, enquanto a rede externa utiliza endereços públicos.
 
 Exemplo:
 
+```text
 Rede Interna
 
 192.168.1.10
@@ -71,95 +79,113 @@ Rede Interna
 192.168.1.30
     |
     |
+    v
 Roteador
     |
     |
+    v
 Internet
 
-IP Público
+IP Público:
 200.100.50.20
+```
+
+O roteador controla a comunicação entre esses dois ambientes.
 
 ---
 
 ## 📡 DHCP (Dynamic Host Configuration Protocol)
 
-O DHCP é um protocolo responsável por configurar automaticamente dispositivos em uma rede.
+O DHCP é um protocolo responsável por configurar automaticamente dispositivos dentro de uma rede.
 
 Ele fornece:
 
 - Endereço IP
 - Máscara de sub-rede
 - Gateway padrão
-- Servidor DNS
+- Outras configurações de rede
 
 Exemplo:
 
+```text
 IP: 192.168.1.15
 Máscara: 255.255.255.0
 Gateway: 192.168.1.1
-DNS: 8.8.8.8
+```
 
-Sem DHCP, cada dispositivo precisaria ser configurado manualmente.
+Sem DHCP, cada dispositivo precisaria receber essas informações manualmente.
 
 ---
 
 ## 🔄 Processo DORA do DHCP
 
-O DHCP utiliza quatro etapas para entregar uma configuração de rede.
+O DHCP funciona através de quatro etapas:
 
 ### 1. Discover
 
 O dispositivo procura um servidor DHCP disponível.
 
+```text
 Cliente:
 "Existe algum servidor DHCP?"
+```
 
 ---
 
 ### 2. Offer
 
-O servidor responde oferecendo uma configuração.
+O servidor oferece uma configuração de rede.
 
+```text
 Servidor:
-"Você pode usar o IP 192.168.1.15"
+"Você pode utilizar o IP 192.168.1.15"
+```
 
 ---
 
 ### 3. Request
 
-O dispositivo aceita a oferta.
+O dispositivo aceita a configuração oferecida.
 
+```text
 Cliente:
 "Aceito esse endereço IP"
+```
 
 ---
 
 ### 4. Acknowledge
 
-O servidor confirma a configuração.
+O servidor confirma a atribuição.
 
+```text
 Servidor:
 "Configuração aplicada com sucesso"
+```
 
 ---
 
 ## 🔄 NAT (Network Address Translation)
 
-O NAT é responsável por traduzir endereços IP privados em endereços IP públicos.
+O NAT é uma técnica utilizada pelo roteador para traduzir endereços IP privados em um ou mais endereços IP públicos, permitindo comunicação com a Internet.
 
-Ele permite que vários dispositivos de uma rede interna utilizem um único IP público para acessar a Internet.
+Ele permite que vários dispositivos de uma rede interna acessem a Internet utilizando um único endereço público.
 
 Exemplo:
 
 Antes do NAT:
 
+```text
 IP Privado: 192.168.1.10
+```
 
 Depois do NAT:
 
+```text
 IP Público: 200.100.50.20
+```
 
-O roteador mantém uma tabela NAT para saber qual dispositivo realizou cada conexão.
+O roteador mantém uma tabela NAT para identificar quais dispositivos realizaram cada conexão.
 
 ---
 
@@ -169,27 +195,33 @@ O roteador mantém uma tabela NAT para saber qual dispositivo realizou cada cone
 
 São endereços utilizados dentro de redes internas.
 
-Eles não são roteáveis diretamente na Internet.
+Eles não são roteáveis diretamente pela Internet.
 
 Principais faixas:
 
+```text
 10.0.0.0/8
 172.16.0.0/12
 192.168.0.0/16
+```
 
 Exemplo:
 
+```text
 192.168.1.50
+```
 
 ---
 
 ### IP Público
 
-São endereços utilizados na Internet e fornecidos pelo ISP.
+São endereços utilizados na Internet e fornecidos por provedores de acesso (ISP).
 
 Exemplo:
 
+```text
 200.100.50.20
+```
 
 ---
 
@@ -197,7 +229,7 @@ Exemplo:
 
 As classes IPv4 são uma forma histórica de organizar endereços IP.
 
-Atualmente, o modelo CIDR é mais utilizado.
+Atualmente, o modelo CIDR é mais utilizado, porém as classes ainda ajudam na compreensão dos fundamentos.
 
 | Classe | Primeiro Octeto | Uso |
 |--------|-----------------|-----|
@@ -206,6 +238,8 @@ Atualmente, o modelo CIDR é mais utilizado.
 | C | 192 - 223 | Redes pequenas |
 | D | 224 - 239 | Multicast |
 | E | 240 - 255 | Reservada |
+
+> Observação: O endereçamento por classes é um conceito histórico. Atualmente, redes utilizam principalmente CIDR (Classless Inter-Domain Routing) para definir tamanhos de redes.
 
 ---
 
@@ -225,27 +259,33 @@ Atualmente, o modelo CIDR é mais utilizado.
 
 ### Loopback
 
-Usado para comunicação do próprio computador.
+Usado para testar a comunicação do próprio computador.
 
 Exemplo:
 
+```text
 127.0.0.1
+```
 
 ---
 
 ### APIPA
 
-Endereço atribuído automaticamente quando o dispositivo não consegue obter IP através do DHCP.
+Endereço atribuído automaticamente quando o dispositivo não consegue obter uma configuração através do DHCP.
 
 Faixa:
 
+```text
 169.254.0.0/16
+```
 
 Exemplo:
 
+```text
 169.254.10.20
+```
 
-Normalmente indica falha na comunicação com o servidor DHCP.
+Normalmente indica um problema na comunicação com o servidor DHCP.
 
 ---
 
@@ -273,7 +313,7 @@ Esses conhecimentos são utilizados em:
 
 **Pablo Gonçalves Santos**
 
-* Sistemas da Informação
+* Sistemas de Informação
 * Redes e Cibersegurança
 
 ---
