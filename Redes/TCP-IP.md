@@ -266,7 +266,7 @@ No destino, ocorre o processo inverso chamado **desencapsulamento**, onde os dad
 
 **Pablo Gonçalves Santos**
 
-* Sistemas da Informação
+* Sistemas de Informação
 * Redes e Cibersegurança
 
 ---
