@@ -233,7 +233,7 @@ Atualmente, o modelo CIDR é mais utilizado, porém as classes ainda ajudam na c
 
 | Classe | Primeiro Octeto | Uso |
 |--------|-----------------|-----|
-| A | 1 - 126 | Redes grandes |
+| A | 1 - 126 | Redes muito grandes |
 | B | 128 - 191 | Redes médias |
 | C | 192 - 223 | Redes pequenas |
 | D | 224 - 239 | Multicast |
@@ -243,49 +243,53 @@ Atualmente, o modelo CIDR é mais utilizado, porém as classes ainda ajudam na c
 
 ---
 
-## 📌 Faixas IPv4 Importantes
+## 📍 Intervalos de Endereços IPv4
 
-| Endereço | Função |
-|----------|--------|
-| 10.0.0.0/8 | Rede privada |
-| 172.16.0.0/12 | Rede privada |
-| 192.168.0.0/16 | Rede privada |
-| 127.0.0.1 | Loopback |
-| 169.254.0.0/16 | APIPA |
+Os endereços IPv4 possuem faixas que indicam sua classificação e finalidade.
 
----
-
-## 🔁 Outros Endereços Importantes
-
-### Loopback
-
-Usado para testar a comunicação do próprio computador.
-
-Exemplo:
-
-```text
-127.0.0.1
-```
+| Faixa de IP | Classificação | Uso |
+|-------------|---------------|-----|
+| 1.0.0.0 - 126.255.255.255 | Classe A | Redes muito grandes |
+| 128.0.0.0 - 191.255.255.255 | Classe B | Redes médias |
+| 192.0.0.0 - 223.255.255.255 | Classe C | Redes pequenas |
+| 224.0.0.0 - 239.255.255.255 | Classe D | Multicast |
+| 240.0.0.0 - 255.255.255.255 | Classe E | Reservada |
 
 ---
 
-### APIPA
+## 🔐 Principais Faixas Privadas IPv4
 
-Endereço atribuído automaticamente quando o dispositivo não consegue obter uma configuração através do DHCP.
+Essas faixas são utilizadas dentro de redes internas e não são roteáveis diretamente na Internet.
 
-Faixa:
+| Faixa | Uso |
+|-------|-----|
+| 10.0.0.0 - 10.255.255.255 | Grandes empresas |
+| 172.16.0.0 - 172.31.255.255 | Redes corporativas |
+| 192.168.0.0 - 192.168.255.255 | Redes domésticas e pequenas empresas |
+
+Exemplos:
 
 ```text
-169.254.0.0/16
+10.20.30.40 → Rede corporativa
+172.16.5.10 → Rede empresarial
+192.168.1.50 → Rede doméstica
 ```
 
-Exemplo:
+---
+
+## 🔁 Endereços Especiais
+
+| Faixa | Função |
+|-------|--------|
+| 127.0.0.0 - 127.255.255.255 | Loopback |
+| 169.254.0.0 - 169.254.255.255 | APIPA (falha no DHCP) |
+
+Exemplos:
 
 ```text
-169.254.10.20
+127.0.0.1 → Próprio computador
+169.254.10.20 → IP automático quando DHCP falha
 ```
-
-Normalmente indica um problema na comunicação com o servidor DHCP.
 
 ---
 
