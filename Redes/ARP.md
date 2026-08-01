@@ -39,6 +39,8 @@ O endereço MAC é o endereço físico da placa de rede (NIC).
 
 Ele atua na **Camada 2 (Enlace)** e é utilizado para entregar quadros dentro de uma rede local.
 
+Normalmente o endereço MAC é associado à placa de rede e permanece o mesmo, porém pode ser alterado por software (MAC spoofing).
+
 Exemplo:
 
 ```text
@@ -132,54 +134,208 @@ Agora, quando precisar enviar novamente para esse destino, não será necessári
 
 ---
 
-## 📡 ARP e Broadcast
+## 🔄 Funcionamento visual do ARP
 
-O ARP utiliza broadcast porque inicialmente o dispositivo não sabe quem possui determinado endereço IP.
+O ARP acontece quando um dispositivo conhece o endereço IP de destino, mas ainda não sabe qual é o endereço MAC correspondente.
 
-O endereço MAC de broadcast é:
+### Cenário inicial
+
+Dois dispositivos estão na mesma rede local:
+
+```text
+PC1                              PC2
+
+IP: 192.168.1.10                 IP: 192.168.1.20
+MAC: AA-AA-AA                    MAC: BB-BB-BB
+          |
+          |
+      +-------+
+      | SWITCH|
+      +-------+
+```
+
+O PC1 deseja enviar dados para o PC2, mas ele possui apenas o IP:
+
+```text
+Destino:
+IP: 192.168.1.20
+MAC: ???
+```
+
+---
+
+### 1️⃣ ARP Request (Solicitação)
+
+O PC1 envia um broadcast perguntando:
+
+```text
+Quem possui o IP 192.168.1.20?
+Informe seu endereço MAC.
+```
+
+O quadro Ethernet é enviado para todos:
+
+```text
+MAC destino:
+FF:FF:FF:FF:FF:FF
+```
+
+Fluxo:
+
+```text
+      +-------+
+      | SWITCH|
+      +-------+
+    ↙    ↓    ↘
+  PC1    PC2   PC3
+  ARP    ARP   ARP
+Request Request Request
+```
+
+Todos recebem, mas apenas o dispositivo correto responde.
+
+---
+
+### 2️⃣ ARP Reply (Resposta)
+
+O PC2 reconhece que aquele IP pertence a ele.
+
+Então responde:
+
+```text
+192.168.1.20 pertence a mim.
+Meu MAC é: BB-BB-BB
+```
+
+Comunicação:
+
+```text
+PC2 ─────────► PC1
+IP: 192.168.1.20
+MAC: BB-BB-BB
+```
+
+---
+
+### 3️⃣ Tabela ARP
+
+Após receber a resposta, o PC1 armazena a informação:
+
+```text
+Tabela ARP
+
+IP                  MAC
+192.168.1.20  →  BB-BB-BB
+```
+
+Agora ele já sabe como enviar os próximos quadros.
+
+---
+
+## 🔀 Papel do Switch no ARP
+
+O switch opera na Camada 2 e não entende endereços IP. Ele apenas analisa endereços MAC.
+
+Quando recebe um ARP Request com destino:
 
 ```text
 FF:FF:FF:FF:FF:FF
 ```
 
-Quando um switch recebe um quadro broadcast, ele encaminha para todos os dispositivos da mesma rede local.
+ele trata como broadcast e envia o quadro para todas as portas, exceto a porta de origem.
 
-Por isso, o ARP funciona apenas dentro do mesmo domínio de broadcast.
+Quando recebe a resposta ARP (unicast), ele encaminha diretamente para o MAC aprendido.
 
 ---
 
-## 🚪 ARP e Gateway Padrão
+## 📡 ARP em uma rede remota
 
-O ARP é utilizado apenas para descobrir dispositivos dentro da mesma rede local.
+O ARP nunca é usado para descobrir o MAC de um dispositivo que está em outra rede. Ele só funciona dentro da rede local.
 
-Quando o destino está em uma rede diferente, o dispositivo não procura o MAC do destino final.
-
-Ele procura o MAC do **gateway padrão** (roteador).
+Quando o destino está em outra rede, o ARP funciona de forma diferente.
 
 Exemplo:
 
 ```text
-PC1
-IP: 192.168.1.10
-
-Servidor remoto:
-IP: 10.0.0.10
+PC1                         Servidor
+192.168.1.10                10.0.0.10
+    |
+    |
+Roteador
+192.168.1.1
 ```
 
-Como estão em redes diferentes, o PC1 envia o quadro para o roteador:
+O PC1 percebe:
 
 ```text
-MAC origem: MAC do PC1
-MAC destino: MAC do roteador
+192.168.1.10 e 10.0.0.10 não pertencem à mesma rede.
 ```
 
-O pacote IP continua tendo como destino:
+Então ele NÃO procura o MAC do servidor.
+
+Ele procura o MAC do gateway:
 
 ```text
-10.0.0.10
+ARP Request:
+Quem possui 192.168.1.1?
 ```
 
-O roteador então encaminha o pacote até a rede de destino.
+Resposta:
+
+```text
+192.168.1.1
+MAC: CC-CC-CC
+```
+
+Depois:
+
+```text
+PC1 → Roteador → Servidor
+```
+
+---
+
+## 🔁 O que muda e o que permanece
+
+Durante uma comunicação entre redes:
+
+### IP (permanece)
+
+```text
+Origem: 192.168.1.10
+Destino: 10.0.0.10
+```
+
+O IP identifica o destino final.
+
+---
+
+### MAC (muda)
+
+O endereço MAC possui importância apenas dentro do enlace atual.
+
+Cada roteador remove o quadro Ethernet recebido e cria um novo quadro para o próximo salto.
+
+Por isso:
+
+- O IP permanece apontando para o destino final.
+- O MAC muda a cada rede percorrida.
+
+Primeiro salto:
+
+```text
+PC1 → Roteador
+MAC: AA-AA-AA → CC-CC-CC
+```
+
+Segundo salto:
+
+```text
+Roteador → Próximo dispositivo
+MAC: DD-DD-DD → EE-EE-EE
+```
+
+O MAC identifica apenas o próximo dispositivo no caminho.
 
 ---
 
@@ -261,15 +417,61 @@ PC1 → Roteador → Próximo salto → Destino
 
 ---
 
+## 🔎 Visualizando a tabela ARP
+
+Os sistemas armazenam temporariamente as associações IP → MAC.
+
+No Windows:
+
+```bash
+arp -a
+```
+
+Exemplo:
+
+```text
+Interface: 192.168.1.10
+
+Endereço IP        Endereço MAC
+192.168.1.1        AA-BB-CC-DD-EE-FF
+192.168.1.20       BB-BB-BB-BB-BB-BB
+```
+
+Essas entradas possuem tempo de expiração e são removidas caso não sejam utilizadas.
+
+---
+
+## 📋 Resumo visual
+
+```text
+IP conhecido
+    |
+    ↓
+Preciso descobrir o MAC
+    |
+    ↓
+ARP Request (Broadcast FF:FF:FF:FF:FF:FF)
+    |
+    ↓
+Dispositivo responde (ARP Reply)
+    |
+    ↓
+IP + MAC armazenados na tabela ARP
+    |
+    ↓
+Comunicação normal
+```
+
+---
+
 ## 📋 Resumo
 
-- O **ARP** descobre o MAC de um dispositivo através do seu endereço IP.
-- O ARP utiliza **broadcast** para encontrar o dispositivo correto.
-- O switch encaminha broadcasts dentro da rede local.
-- A resposta ARP cria uma entrada na tabela ARP.
-- O ARP funciona para IPv4.
-- No IPv6, o processo equivalente é o **Neighbor Discovery (ND)**.
-- Quando o destino está em outra rede, o ARP descobre o MAC do gateway padrão, não do destino final.
+- O ARP realiza a resolução de endereço IPv4 para endereço MAC dentro de uma rede local.
+- O ARP utiliza mensagens broadcast para localizar o dispositivo que possui determinado endereço IP.
+- Após receber uma resposta, o dispositivo armazena a relação IP → MAC em sua tabela ARP.
+- O ARP funciona apenas no mesmo domínio de broadcast.
+- Para redes remotas, o dispositivo utiliza o MAC do gateway padrão, não o MAC do destino final.
+- No IPv6, essa função é realizada pelo Neighbor Discovery (ND).
 
 ---
 
