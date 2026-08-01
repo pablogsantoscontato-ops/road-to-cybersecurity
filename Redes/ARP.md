@@ -130,9 +130,11 @@ Quando recebe um ARP Request:
 FF:FF:FF:FF:FF:FF
 ```
 
-Ele entende como broadcast e envia para todas as portas da rede local.
+Ele identifica como um broadcast e encaminha o quadro para todas as portas da mesma rede local, exceto a porta de origem.
 
-Quando recebe a resposta ARP, encaminha como unicast para o MAC correto.
+Quando recebe a resposta ARP (ARP Reply), encaminha o quadro como unicast para o MAC de destino correto.
+
+> Observação: O switch não entende ARP em si. Ele não sabe que é um ARP Request; ele apenas vê que o MAC de destino é FF:FF:FF:FF:FF:FF, então trata como broadcast e faz o encaminhamento.
 
 ---
 
