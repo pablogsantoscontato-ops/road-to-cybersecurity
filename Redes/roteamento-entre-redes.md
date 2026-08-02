@@ -97,6 +97,20 @@ O computador envia o pacote para o roteador doméstico, que encaminha para a int
 
 ## 🔁 Endereço IP x Endereço MAC
 
+O endereço IP é o endereço lógico do dispositivo na rede, enquanto o endereço MAC é o endereço físico da placa de rede.
+
+Formato do endereço MAC:
+
+```text
+XX:XX:XX:XX:XX:XX
+```
+
+Exemplo:
+
+```text
+AA:BB:CC:DD:EE:FF
+```
+
 Durante a comunicação entre redes:
 
 O endereço IP permanece o mesmo do início ao fim:
@@ -278,6 +292,26 @@ Para que VLANs diferentes se comuniquem, é necessário roteamento entre elas.
 Exemplo:
 
 Wi-Fi corporativo com SSID Empresa (VLAN Funcionários) e SSID Visitantes (VLAN Visitantes). Visitantes não acessam a rede interna.
+
+---
+
+## 📚 Conceitos aprendidos
+
+| Conceito | Descrição |
+|----------|-----------|
+| **Roteamento** | Processo de encaminhar pacotes entre redes diferentes usando roteadores. |
+| **Roteador** | Dispositivo de Camada 3 que conecta redes e decide o melhor caminho para os pacotes. |
+| **Gateway Padrão** | Endereço IP do roteador usado pelos hosts para acessar outras redes. |
+| **Tabela de Roteamento** | Conjunto de informações que o roteador usa para escolher por onde encaminhar os pacotes. |
+| **Rota Padrão** | Caminho usado quando o roteador não possui uma rota específica para o destino. |
+| **ARP** | Protocolo usado para descobrir o endereço MAC associado a um endereço IP dentro da rede local. |
+| **Endereço IP** | Identifica a origem e o destino final de uma comunicação. |
+| **Endereço MAC** | Identifica dispositivos dentro da rede local e é usado na comunicação Ethernet. |
+| **Domínio de Broadcast** | Área da rede onde uma mensagem broadcast é recebida por todos os dispositivos. |
+| **Segmentação de Rede** | Divisão de uma rede grande em redes menores para melhorar desempenho, segurança e organização. |
+| **LAN** | Rede local onde dispositivos se comunicam dentro de uma área administrada. |
+| **VLAN** | Tecnologia que permite criar redes lógicas separadas dentro de um mesmo switch. |
+| **Roteamento entre Redes** | Permite a comunicação entre diferentes redes através de dispositivos de Camada 3. |
 
 ---
 
