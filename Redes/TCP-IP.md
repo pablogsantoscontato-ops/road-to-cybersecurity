@@ -248,6 +248,31 @@ No destino, ocorre o processo inverso chamado **desencapsulamento**, onde os dad
 
 ---
 
+## 📚 Conceitos aprendidos
+
+| Conceito | Descrição |
+|----------|-----------|
+| **Modelo TCP/IP** | Conjunto de protocolos utilizado para comunicação entre dispositivos em redes, sendo a base da Internet. |
+| **Camadas TCP/IP** | Divisão da comunicação em quatro camadas: Aplicação, Transporte, Internet e Acesso à Rede. |
+| **Camada de Aplicação** | Responsável pelos serviços utilizados pelos usuários, como HTTP, HTTPS, DNS, DHCP, FTP e SSH. |
+| **Camada de Transporte** | Controla a comunicação entre dispositivos através dos protocolos TCP e UDP. |
+| **TCP** | Protocolo orientado à conexão que garante entrega confiável dos dados, utilizando confirmações, retransmissões e controle de fluxo. |
+| **UDP** | Protocolo mais rápido e simples, utilizado quando baixa latência é mais importante que garantia de entrega. |
+| **Camada de Internet** | Responsável pelo endereçamento lógico e roteamento utilizando protocolos como IPv4 e IPv6. |
+| **IP** | Protocolo responsável por identificar dispositivos e encaminhar pacotes entre redes. |
+| **IPv4 e IPv6** | Protocolos de endereçamento que identificam dispositivos dentro de uma rede. |
+| **ICMP** | Protocolo utilizado para mensagens de controle e diagnóstico, como o comando ping. |
+| **ARP** | Protocolo utilizado para descobrir o endereço MAC associado a um endereço IP na rede local. |
+| **Camada de Acesso à Rede** | Responsável pela comunicação física utilizando tecnologias como Ethernet, Wi-Fi e endereços MAC. |
+| **Endereço MAC** | Endereço físico de uma placa de rede utilizado para comunicação dentro da rede local. |
+| **Portas** | Identificadores numéricos utilizados para direcionar a comunicação para serviços específicos em um dispositivo. |
+| **Socket** | Combinação entre endereço IP e porta que identifica uma comunicação específica. |
+| **Encapsulamento** | Processo em que cada camada adiciona informações aos dados antes da transmissão. |
+| **Desencapsulamento** | Processo inverso, onde o dispositivo destino remove as informações adicionadas pelas camadas. |
+| **Protocolos de rede** | Regras que permitem a comunicação entre dispositivos, definindo como os dados são enviados e recebidos. |
+
+---
+
 ## 📋 Resumo
 
 - TCP/IP é o modelo utilizado na Internet
