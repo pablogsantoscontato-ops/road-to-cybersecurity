@@ -192,6 +192,25 @@ Observações:
 
 ---
 
+## 📚 Conceitos aprendidos
+
+| Conceito | Descrição |
+|----------|-----------|
+| **CIDR (Classless Inter-Domain Routing)** | Forma moderna de representar máscaras de sub-rede usando prefixos como /24, /25 e /26. |
+| **Subnetting** | Processo de dividir uma rede IP maior em redes menores para melhorar organização, segurança e aproveitamento de endereços. |
+| **Máscara de Sub-rede** | Define qual parte do endereço IP representa a rede e qual parte representa os hosts. |
+| **Prefixo CIDR** | Número após a barra (`/`) que indica a quantidade de bits utilizados para identificar a rede. |
+| **Rede** | Endereço que identifica a própria sub-rede e não pode ser atribuído a dispositivos. |
+| **Host** | Dispositivo conectado a uma rede que utiliza um endereço IP válido para comunicação. |
+| **Broadcast** | Endereço utilizado para enviar uma mensagem para todos os dispositivos de uma sub-rede. |
+| **Hosts disponíveis** | Quantidade de endereços IP que podem ser atribuídos aos dispositivos dentro de uma sub-rede. |
+| **Divisão de redes** | Permite criar sub-redes menores a partir de uma rede maior, evitando desperdício de IPs. |
+| **Planejamento de endereçamento IP** | Processo de escolher tamanhos de sub-redes adequados conforme a quantidade de dispositivos necessários. |
+| **VLSM (Variable Length Subnet Mask)** | Técnica que permite utilizar diferentes tamanhos de máscaras dentro da mesma rede para otimizar endereços IP. |
+| **Segmentação de rede** | Uso de sub-redes para separar ambientes, melhorar desempenho e aumentar a segurança. |
+
+---
+
 ## 👨‍💻 Autor
 
 **Pablo Gonçalves Santos**
