@@ -313,6 +313,28 @@ Esses conhecimentos são utilizados em:
 
 ---
 
+## 📚 Conceitos aprendidos
+
+| Conceito | Descrição |
+|----------|-----------|
+| **Gateway Padrão** | Endereço IP do roteador utilizado como saída da rede local para acessar outras redes. |
+| **Roteador** | Dispositivo de Camada 3 responsável por conectar redes diferentes e encaminhar pacotes. |
+| **LAN** | Rede local onde dispositivos se comunicam dentro de uma mesma organização ou ambiente. |
+| **DHCP** | Protocolo que configura automaticamente dispositivos de rede, fornecendo IP, máscara, gateway e outras informações. |
+| **DORA** | Processo de funcionamento do DHCP dividido em Discover, Offer, Request e Acknowledge. |
+| **NAT** | Técnica que traduz endereços IP privados em públicos, permitindo que dispositivos internos acessem a Internet. |
+| **IP Privado** | Endereço utilizado dentro de redes internas e que não é roteável diretamente na Internet. |
+| **IP Público** | Endereço utilizado para comunicação na Internet, normalmente fornecido por um ISP. |
+| **IPv4** | Protocolo de endereçamento que utiliza endereços de 32 bits para identificar dispositivos em redes. |
+| **Classes IPv4** | Modelo histórico de organização dos endereços IP em classes A, B, C, D e E. |
+| **CIDR** | Método moderno de divisão de redes IP baseado em prefixos, substituindo o modelo de classes. |
+| **Endereços Especiais IPv4** | Faixas reservadas para funções específicas, como loopback e APIPA. |
+| **APIPA** | Endereço automático atribuído quando um dispositivo não consegue comunicação com um servidor DHCP. |
+| **Comunicação entre redes** | Processo em que dispositivos utilizam roteadores e gateways para acessar redes externas. |
+| **Segurança de Redes** | Conhecimento fundamental para análise de tráfego, monitoramento, logs e atuação em Blue Team. |
+
+---
+
 ## 👨‍💻 Autor
 
 **Pablo Gonçalves Santos**
