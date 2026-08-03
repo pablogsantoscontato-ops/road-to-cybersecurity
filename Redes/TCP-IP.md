@@ -207,12 +207,24 @@ Enquanto o endereço IP identifica o dispositivo na rede, a porta identifica a a
 
 Exemplo:
 
+```text
 192.168.1.10:443
+```
 
 IP → dispositivo
 443 → serviço HTTPS
 
-Cada aplicação utiliza um número de porta para se comunicar.
+### Categorias de Portas
+
+As portas TCP e UDP são divididas em três categorias principais, variando de 1 a 65.535.
+
+| Categoria | Intervalo | Descrição |
+|-----------|-----------|-----------|
+| Portas bem conhecidas (*Well-Known Ports*) | 1 - 1023 | Associadas a serviços comuns da Internet |
+| Portas registradas | 1024 - 49151 | Utilizadas por aplicações específicas e empresas |
+| Portas privadas/dinâmicas | 49152 - 65535 | Geralmente usadas como portas de origem temporárias |
+
+Exemplos de portas bem conhecidas:
 
 | Porta | Protocolo | Serviço |
 |-------|-----------|---------|
@@ -228,7 +240,87 @@ Cada aplicação utiliza um número de porta para se comunicar.
 | 443 | TCP | HTTPS |
 | 3389 | TCP | RDP |
 
-Socket = Endereço IP + Porta
+### Portas de Origem e Destino
+
+Toda comunicação TCP ou UDP possui duas portas:
+
+- **Porta de origem:** identifica a aplicação que iniciou a comunicação.
+- **Porta de destino:** identifica o serviço solicitado no servidor.
+
+Exemplo de uma conexão Web:
+
+```text
+Cliente                              Servidor
+192.168.1.10:52000 ──────────→ 142.250.190.14:443
+
+Porta origem: 52000                  Porta destino: 443
+```
+
+A porta de destino informa ao servidor qual serviço deve receber a solicitação.
+
+A porta de origem permite que o cliente identifique para qual aplicação a resposta deve retornar.
+
+### Socket e Par de Sockets
+
+Um **socket** é formado pela combinação:
+
+```text
+Endereço IP + Número da Porta
+```
+
+Exemplo:
+
+```text
+192.168.1.10:52000
+```
+
+Representa:
+
+- IP: dispositivo na rede
+- Porta: aplicação ou serviço utilizado
+
+Uma comunicação completa utiliza dois sockets:
+
+```text
+Socket do cliente: 192.168.1.10:52000
+Socket do servidor: 142.250.190.14:443
+```
+
+Juntos eles formam um **par de sockets**, que identifica uma conexão específica entre dois dispositivos.
+
+Os sockets permitem que várias aplicações utilizem a rede simultaneamente sem que os dados sejam entregues ao programa errado.
+
+---
+
+## 📡 Multiplexação e Desmultiplexação
+
+A camada de transporte permite que vários serviços utilizem a rede ao mesmo tempo através das portas.
+
+### Multiplexação
+
+No dispositivo de origem, várias aplicações enviam dados utilizando diferentes portas.
+
+Exemplo:
+
+```text
+Navegador → porta 443
+E-mail → porta 25
+DNS → porta 53
+```
+
+Esses dados são enviados pela mesma interface de rede utilizando o protocolo IP.
+
+### Desmultiplexação
+
+No dispositivo destino, a camada de transporte analisa a porta de destino e entrega os dados ao serviço correto.
+
+Exemplo:
+
+```text
+Porta 80 → HTTP
+Porta 443 → HTTPS
+Porta 53 → DNS
+```
 
 ---
 
@@ -266,7 +358,15 @@ No destino, ocorre o processo inverso chamado **desencapsulamento**, onde os dad
 | **Camada de Acesso à Rede** | Responsável pela comunicação física utilizando tecnologias como Ethernet, Wi-Fi e endereços MAC. |
 | **Endereço MAC** | Endereço físico de uma placa de rede utilizado para comunicação dentro da rede local. |
 | **Portas** | Identificadores numéricos utilizados para direcionar a comunicação para serviços específicos em um dispositivo. |
+| **Portas bem conhecidas** | Portas de 1 a 1023 associadas a serviços comuns da Internet. |
+| **Portas registradas** | Portas de 1024 a 49151 utilizadas por aplicações específicas e empresas. |
+| **Portas privadas/dinâmicas** | Portas de 49152 a 65535 usadas como portas de origem temporárias. |
+| **Porta de origem** | Identifica a aplicação que iniciou a comunicação. |
+| **Porta de destino** | Identifica o serviço solicitado no servidor. |
 | **Socket** | Combinação entre endereço IP e porta que identifica uma comunicação específica. |
+| **Par de sockets** | Combinação dos sockets do cliente e servidor que identifica uma conexão única. |
+| **Multiplexação** | Processo em que várias aplicações enviam dados através da mesma interface de rede. |
+| **Desmultiplexação** | Processo em que a camada de transporte entrega os dados ao serviço correto baseado na porta de destino. |
 | **Encapsulamento** | Processo em que cada camada adiciona informações aos dados antes da transmissão. |
 | **Desencapsulamento** | Processo inverso, onde o dispositivo destino remove as informações adicionadas pelas camadas. |
 | **Protocolos de rede** | Regras que permitem a comunicação entre dispositivos, definindo como os dados são enviados e recebidos. |
