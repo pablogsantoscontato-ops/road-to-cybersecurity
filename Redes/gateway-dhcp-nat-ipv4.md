@@ -191,37 +191,42 @@ O roteador mantém uma tabela NAT para identificar quais dispositivos realizaram
 
 ## 🌍 Endereços IP Privados e Públicos
 
-### IP Privado
+### 🔒 Faixas de IP Privado (RFC 1918)
 
-São endereços utilizados dentro de redes internas.
+São endereços usados **apenas em redes internas** e **não são roteáveis na Internet**.
 
-Eles não são roteáveis diretamente pela Internet.
+| Faixa | Classe | Uso comum |
+|-------|--------|-----------|
+| 10.0.0.0 – 10.255.255.255 | A | Grandes empresas |
+| 172.16.0.0 – 172.31.255.255 | B | Redes corporativas |
+| 192.168.0.0 – 192.168.255.255 | C | Redes domésticas e pequenas empresas |
 
-Principais faixas:
-
-```text
-10.0.0.0/8
-172.16.0.0/12
-192.168.0.0/16
-```
-
-Exemplo:
+Exemplos:
 
 ```text
-192.168.1.50
+10.20.30.40 → Rede corporativa
+172.16.5.10 → Rede empresarial
+192.168.1.50 → Rede doméstica
 ```
 
 ---
 
-### IP Público
+### 🌍 Faixas de IP Público
 
-São endereços utilizados na Internet e fornecidos por provedores de acesso (ISP).
+Os endereços públicos são **roteáveis na Internet** e são atribuídos por um ISP ou um registro regional (RIR).
 
-Exemplo:
+Como as faixas privadas ocupam apenas uma pequena parte do espaço IPv4, os endereços públicos correspondem às demais faixas **válidas**, excluindo também os intervalos reservados (como loopback, APIPA, multicast etc.).
 
-```text
-200.100.50.20
-```
+| Faixa | Observação |
+|-------|------------|
+| 1.0.0.0 – 9.255.255.255 | Público |
+| 11.0.0.0 – 126.255.255.255 | Público |
+| 128.0.0.0 – 172.15.255.255 | Público |
+| 172.32.0.0 – 191.255.255.255 | Público |
+| 192.0.0.0 – 192.167.255.255 | Público |
+| 192.169.0.0 – 223.255.255.255 | Público |
+
+> **Observação:** Dentro dessas faixas ainda existem alguns blocos reservados para finalidades específicas (como `127.0.0.0/8` para loopback, `169.254.0.0/16` para APIPA e `224.0.0.0/4` para multicast). Na prática, qualquer endereço que **não pertença a uma faixa privada ou reservada** pode ser um endereço IP público.
 
 ---
 
@@ -254,26 +259,6 @@ Os endereços IPv4 possuem faixas que indicam sua classificação e finalidade.
 | 192.0.0.0 - 223.255.255.255 | Classe C | Redes pequenas |
 | 224.0.0.0 - 239.255.255.255 | Classe D | Multicast |
 | 240.0.0.0 - 255.255.255.255 | Classe E | Reservada |
-
----
-
-## 🔐 Principais Faixas Privadas IPv4
-
-Essas faixas são utilizadas dentro de redes internas e não são roteáveis diretamente na Internet.
-
-| Faixa | Uso |
-|-------|-----|
-| 10.0.0.0 - 10.255.255.255 | Grandes empresas |
-| 172.16.0.0 - 172.31.255.255 | Redes corporativas |
-| 192.168.0.0 - 192.168.255.255 | Redes domésticas e pequenas empresas |
-
-Exemplos:
-
-```text
-10.20.30.40 → Rede corporativa
-172.16.5.10 → Rede empresarial
-192.168.1.50 → Rede doméstica
-```
 
 ---
 
